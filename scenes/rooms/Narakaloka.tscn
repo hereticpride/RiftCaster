@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds85jrrg3lken"]
+
+[ext_resource type="PackedScene" uid="uid://djafctctub8eo" path="res://scenes/rooms/Abaddon.tscn" id="1_3uq68"]
+[ext_resource type="PackedScene" uid="uid://dijqqwrrcno8n" path="res://scenes/enemies/worm.tscn" id="2_t6vhh"]
+
+[node name="Room" instance=ExtResource("1_3uq68")]
+
+[node name="EnemySpawn" parent="." index="10"]
+enemy_scenes = Array[PackedScene]([ExtResource("2_t6vhh"), ExtResource("2_t6vhh"), ExtResource("2_t6vhh"), ExtResource("2_t6vhh"), ExtResource("2_t6vhh")])

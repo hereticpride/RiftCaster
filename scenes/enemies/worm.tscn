@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dijqqwrrcno8n"]
+
+[ext_resource type="PackedScene" uid="uid://b2rhetgpdy3fd" path="res://scenes/enemies/imp.tscn" id="1_8t68s"]
+[ext_resource type="Texture2D" uid="uid://dohgcidrer874" path="res://sprites/enemies/worm.png" id="2_0ljy3"]
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="2_55exp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55exp"]
+atlas = ExtResource("2_0ljy3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjmyr"]
+atlas = ExtResource("2_0ljy3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_agfwl"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_55exp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjmyr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_8t68s")]
+enemy_name = "Orb"
+current_hp = 2
+max_hp = 2
+move_speed = 40.0
+damage = 2
+items = Array[PackedScene]([ExtResource("2_55exp")])
+
+[node name="EnemySprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_agfwl")
+frame_progress = 0.5832923

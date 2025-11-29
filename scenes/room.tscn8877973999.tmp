@@ -1,0 +1,277 @@
+[gd_scene load_steps=19 format=4 uid="uid://bohhel30d8xiw"]
+
+[ext_resource type="Script" uid="uid://dktwe8l61k4gs" path="res://scripts/room.gd" id="1_ffxv4"]
+[ext_resource type="Texture2D" uid="uid://b0nd68rmg5mx3" path="res://sprites/tiles/flamesspritesheet.png" id="3_14vil"]
+[ext_resource type="Texture2D" uid="uid://dcsuj1l5l66fb" path="res://sprites/tiles/flames.png" id="3_85yof"]
+[ext_resource type="Texture2D" uid="uid://dctmpy12keefj" path="res://sprites/tiles/blueflames.png" id="4_14vil"]
+[ext_resource type="Script" uid="uid://brhg5u8jkmv8m" path="res://scripts/entrance.gd" id="4_jxe34"]
+[ext_resource type="Script" uid="uid://bdlpgtmba8f6e" path="res://scenes/enemy_spawn.gd" id="6_jn645"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_14vil"]
+texture = ExtResource("3_85yof")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 3
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxe34"]
+texture = ExtResource("3_14vil")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tefeu"]
+tile_size = Vector2i(32, 32)
+sources/3 = SubResource("TileSetAtlasSource_14vil")
+sources/5 = SubResource("TileSetAtlasSource_jxe34")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jn645"]
+texture = ExtResource("3_14vil")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qvc4m"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_jn645")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybpoa"]
+size = Vector2(56, 48.000015)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dqbv"]
+texture = ExtResource("4_14vil")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ybpoa"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_7dqbv")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_14vil"]
+radius = 29.4084
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qvc4m"]
+texture = ExtResource("3_14vil")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7dqbv"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_qvc4m")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtoah"]
+size = Vector2(56.999996, 48.000004)
+
+[node name="Room" type="StaticBody2D"]
+script = ExtResource("1_ffxv4")
+metadata/_custom_type_script = "uid://dktwe8l61k4gs"
+
+[node name="Border" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAJAAEABQAAAAAAAAAJAAIABQAAAAAAAAAJAAMABQAAAAAAAAAJAAQABQAAAAAAAAAJAAUABQAAAAAAAAAJAAYABQAAAAAAAAAJAAcABQAAAAAAAAAJAAgABQAAAAAAAAD2//X/BQAAAAAAAAD2//b/BQAAAAAAAAD3//X/BQAAAAAAAAD3//b/BQAAAAAAAAD4//X/BQAAAAAAAAD4//b/BQAAAAAAAAD5//X/BQAAAAAAAAD5//b/BQAAAAAAAAD6//X/BQAAAAAAAAD6//b/BQAAAAAAAAD7//X/BQAAAAAAAAD7//b/BQAAAAAAAAD8//X/BQAAAAAAAAD8//b/BQAAAAAAAAD9//X/BQAAAAAAAAD9//b/BQAAAAAAAAD+//X/BQAAAAAAAAD+//b/BQAAAAAAAAD2//f/BQAAAAAAAAD2//j/BQAAAAAAAAD2//n/BQAAAAAAAAD2//r/BQAAAAAAAAD2//v/BQAAAAAAAAD2//z/BQAAAAAAAAD2//3/BQAAAAAAAAD2/wEABQAAAAAAAAD2/wIABQAAAAAAAAD2/wMABQAAAAAAAAD2/wQABQAAAAAAAAD2/wUABQAAAAAAAAD2/wYABQAAAAAAAAD2/wcABQAAAAAAAAD2/wgABQAAAAAAAAAIAPX/BQAAAAAAAAAIAPb/BQAAAAAAAAAJAPX/BQAAAAAAAAAJAPb/BQAAAAAAAAAJAPf/BQAAAAAAAAAJAPj/BQAAAAAAAAAJAPn/BQAAAAAAAAAJAPr/BQAAAAAAAAAJAPv/BQAAAAAAAAAJAPz/BQAAAAAAAAAJAP3/BQAAAAAAAAABAPX/BQAAAAAAAAABAPb/BQAAAAAAAAACAPX/BQAAAAAAAAACAPb/BQAAAAAAAAADAPX/BQAAAAAAAAADAPb/BQAAAAAAAAAEAPX/BQAAAAAAAAAEAPb/BQAAAAAAAAAFAPX/BQAAAAAAAAAFAPb/BQAAAAAAAAAGAPX/BQAAAAAAAAAGAPb/BQAAAAAAAAAHAPX/BQAAAAAAAAAHAPb/BQAAAAAAAAD2//7/BQAAAAAAAAD1//7/BQAAAAAAAAD1//X/BQAAAAAAAAD1//b/BQAAAAAAAAD1//f/BQAAAAAAAAD1//j/BQAAAAAAAAD1//n/BQAAAAAAAAD1//r/BQAAAAAAAAD1//v/BQAAAAAAAAD1//z/BQAAAAAAAAD1//3/BQAAAAAAAAD1/wkABQAAAAAAAAD2/wkABQAAAAAAAAD3/wkABQAAAAAAAAD4/wkABQAAAAAAAAD5/wkABQAAAAAAAAD6/wkABQAAAAAAAAD7/wkABQAAAAAAAAD8/wkABQAAAAAAAAD9/wkABQAAAAAAAAD+/wkABQAAAAAAAAD1/wEABQAAAAAAAAD1/wIABQAAAAAAAAD1/wMABQAAAAAAAAD1/wQABQAAAAAAAAD1/wUABQAAAAAAAAD1/wYABQAAAAAAAAD1/wcABQAAAAAAAAD1/wgABQAAAAAAAAD6/woABQAAAAAAAAD7/woABQAAAAAAAAD8/woABQAAAAAAAAD9/woABQAAAAAAAAD+/woABQAAAAAAAAD1/woABQAAAAAAAAD2/woABQAAAAAAAAD3/woABQAAAAAAAAD4/woABQAAAAAAAAD5/woABQAAAAAAAAABAAoABQAAAAAAAAACAAoABQAAAAAAAAADAAoABQAAAAAAAAAEAAoABQAAAAAAAAABAAkABQAAAAAAAAACAAkABQAAAAAAAAADAAkABQAAAAAAAAAEAAkABQAAAAAAAAAFAAkABQAAAAAAAAAFAAoABQAAAAAAAAAGAAkABQAAAAAAAAAGAAoABQAAAAAAAAAHAAkABQAAAAAAAAAHAAoABQAAAAAAAAAIAAkABQAAAAAAAAAIAAoABQAAAAAAAAAJAAkABQAAAAAAAAAJAAoABQAAAAAAAAAKAAEABQAAAAAAAAAKAAIABQAAAAAAAAAKAAMABQAAAAAAAAAKAAQABQAAAAAAAAAKAAUABQAAAAAAAAAKAAYABQAAAAAAAAAKAAcABQAAAAAAAAAKAAgABQAAAAAAAAAKAAkABQAAAAAAAAAKAAoABQAAAAAAAAAJAP7/BQAAAAAAAAAKAP7/BQAAAAAAAAAKAPz/BQAAAAAAAAAKAP3/BQAAAAAAAAAKAPj/BQAAAAAAAAAKAPn/BQAAAAAAAAAKAPr/BQAAAAAAAAAKAPv/BQAAAAAAAAAKAPb/BQAAAAAAAAAKAPf/BQAAAAAAAAAKAPX/BQAAAAAAAAA=")
+tile_set = SubResource("TileSet_tefeu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-288, -288, -32, -288, -32, -376, -360, -376, -352, -32, -288, -32)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(32, -288, 32, -376, 384, -384, 384, -32, 296, -32, 296, -288)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-296, 40, -384, 40, -384, 384, -32, 384, -32, 296, -288, 296, -288, 40)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(32, 296, 32, 384, 384, 384, 384, 40, 296, 40, 296, 296)
+
+[node name="Entrance_N" type="Node2D" parent="."]
+script = ExtResource("4_jxe34")
+
+[node name="Door" type="Node2D" parent="Entrance_N"]
+
+[node name="Tunnel" type="TileMapLayer" parent="Entrance_N/Door"]
+tile_map_data = PackedByteArray("AAD+//T/AQAAAAAAAAABAPT/AQAAAAAAAAD+//P/AQAAAAAAAAABAPP/AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_qvc4m")
+
+[node name="Barrier" type="StaticBody2D" parent="Entrance_N/Door"]
+position = Vector2(0, -320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_N/Door/Barrier"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_ybpoa")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_N/Door/Barrier"]
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAD//wAAAQAAAAAAAAAAAP//AQAAAAAAAAAAAAAAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_ybpoa")
+
+[node name="Exit" type="Area2D" parent="Entrance_N"]
+position = Vector2(0, -380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_N/Exit"]
+shape = SubResource("CircleShape2D_14vil")
+
+[node name="PlayerSpawn" type="Node2D" parent="Entrance_N"]
+position = Vector2(0, -263)
+
+[node name="Wall" type="StaticBody2D" parent="Entrance_N"]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_N/Wall"]
+tile_map_data = PackedByteArray("AAD///X/AQAAAAAAAAD///b/AQAAAAAAAAAAAPX/AQAAAAAAAAAAAPb/AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_7dqbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_N/Wall"]
+position = Vector2(0, -308)
+shape = SubResource("RectangleShape2D_qtoah")
+
+[node name="Entrance_W" type="Node2D" parent="."]
+rotation = -1.5632609
+script = ExtResource("4_jxe34")
+direction = 3
+
+[node name="Door" type="Node2D" parent="Entrance_W"]
+
+[node name="Tunnel" type="TileMapLayer" parent="Entrance_W/Door"]
+rotation = -0.0014159951
+tile_map_data = PackedByteArray("AAD+//T/AQAAAAAAAFABAPT/AQAAAAAAAFD+//P/AQAAAAAAAFABAPP/AQAAAAAAAFA=")
+tile_set = SubResource("TileSet_qvc4m")
+
+[node name="Barrier" type="StaticBody2D" parent="Entrance_W/Door"]
+position = Vector2(0, -320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_W/Door/Barrier"]
+position = Vector2(-5.1758537, 0.009155273)
+shape = SubResource("RectangleShape2D_ybpoa")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_W/Door/Barrier"]
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAAFD//wAAAQAAAAAAAFAAAP//AQAAAAAAAFAAAAAAAQAAAAAAAFA=")
+tile_set = SubResource("TileSet_ybpoa")
+
+[node name="Exit" type="Area2D" parent="Entrance_W"]
+position = Vector2(0, -380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_W/Exit"]
+shape = SubResource("CircleShape2D_14vil")
+
+[node name="PlayerSpawn" type="Node2D" parent="Entrance_W"]
+position = Vector2(0, -263)
+
+[node name="Wall" type="StaticBody2D" parent="Entrance_W"]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_W/Wall"]
+tile_map_data = PackedByteArray("AAD///X/AQAAAAAAAFD///b/AQAAAAAAAFAAAPX/AQAAAAAAAFAAAPb/AQAAAAAAAFA=")
+tile_set = SubResource("TileSet_7dqbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_W/Wall"]
+position = Vector2(-4.6758575, -319.99097)
+shape = SubResource("RectangleShape2D_qtoah")
+
+[node name="Entrance_S" type="Node2D" parent="."]
+rotation = -3.1415927
+script = ExtResource("4_jxe34")
+direction = 1
+
+[node name="Door" type="Node2D" parent="Entrance_S"]
+
+[node name="Tunnel" type="TileMapLayer" parent="Entrance_S/Door"]
+tile_map_data = PackedByteArray("AAD+//T/AQAAAAAAADABAPT/AQAAAAAAADD+//P/AQAAAAAAADABAPP/AQAAAAAAADA=")
+tile_set = SubResource("TileSet_qvc4m")
+
+[node name="Barrier" type="StaticBody2D" parent="Entrance_S/Door"]
+position = Vector2(0, -320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_S/Door/Barrier"]
+position = Vector2(2.6783197e-05, 0)
+shape = SubResource("RectangleShape2D_ybpoa")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_S/Door/Barrier"]
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAADD//wAAAQAAAAAAADAAAAAAAQAAAAAAADAAAP//AQAAAAAAADA=")
+tile_set = SubResource("TileSet_ybpoa")
+
+[node name="Exit" type="Area2D" parent="Entrance_S"]
+position = Vector2(0, -380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_S/Exit"]
+shape = SubResource("CircleShape2D_14vil")
+
+[node name="PlayerSpawn" type="Node2D" parent="Entrance_S"]
+position = Vector2(0, -263)
+
+[node name="Wall" type="StaticBody2D" parent="Entrance_S"]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_S/Wall"]
+tile_map_data = PackedByteArray("AAD///X/AQAAAAAAADD///b/AQAAAAAAADAAAPX/AQAAAAAAADAAAPb/AQAAAAAAADA=")
+tile_set = SubResource("TileSet_7dqbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_S/Wall"]
+position = Vector2(2.6735466e-05, -320)
+shape = SubResource("RectangleShape2D_qtoah")
+
+[node name="Entrance_E" type="Node2D" parent="."]
+rotation = -4.712389
+script = ExtResource("4_jxe34")
+direction = 2
+
+[node name="Door" type="Node2D" parent="Entrance_E"]
+
+[node name="Tunnel" type="TileMapLayer" parent="Entrance_E/Door"]
+tile_map_data = PackedByteArray("AAD+//T/AQAAAAAAAGABAPT/AQAAAAAAAGD+//P/AQAAAAAAAGABAPP/AQAAAAAAAGA=")
+tile_set = SubResource("TileSet_qvc4m")
+
+[node name="Barrier" type="StaticBody2D" parent="Entrance_E/Door"]
+position = Vector2(0, -320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_E/Door/Barrier"]
+position = Vector2(4.000004, 0)
+shape = SubResource("RectangleShape2D_ybpoa")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_E/Door/Barrier"]
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAAGD//wAAAQAAAAAAAGAAAP//AQAAAAAAAGAAAAAAAQAAAAAAAGA=")
+tile_set = SubResource("TileSet_ybpoa")
+
+[node name="Exit" type="Area2D" parent="Entrance_E"]
+position = Vector2(0, -380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_E/Exit"]
+shape = SubResource("CircleShape2D_14vil")
+
+[node name="PlayerSpawn" type="Node2D" parent="Entrance_E"]
+position = Vector2(0, -263)
+
+[node name="Wall" type="StaticBody2D" parent="Entrance_E"]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Entrance_E/Wall"]
+tile_map_data = PackedByteArray("AAD///X/AQAAAAAAAGD///b/AQAAAAAAAGAAAPX/AQAAAAAAAGAAAPb/AQAAAAAAAGA=")
+tile_set = SubResource("TileSet_7dqbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_E/Wall"]
+position = Vector2(4.500002, -320)
+shape = SubResource("RectangleShape2D_qtoah")
+
+[node name="EnemySpawn" type="Node2D" parent="."]
+position = Vector2(-192, -192)
+script = ExtResource("6_jn645")
+
+[node name="WaveCountdown" type="Timer" parent="EnemySpawn"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="EnemySpawn/WaveCountdown" to="EnemySpawn" method="_on_wave_countdown_timeout"]

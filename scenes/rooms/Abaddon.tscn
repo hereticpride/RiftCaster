@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://djafctctub8eo"]
+
+[ext_resource type="PackedScene" uid="uid://bohhel30d8xiw" path="res://scenes/rooms/Limbo.tscn" id="1_p0c1u"]
+[ext_resource type="PackedScene" uid="uid://cxykl7bio7yrw" path="res://scenes/enemies/enemy_spawn.tscn" id="2_28se7"]
+
+[node name="Room" instance=ExtResource("1_p0c1u")]
+
+[node name="Entrance_N" parent="." index="6" groups=["Entrance"]]
+
+[node name="Entrance_W" parent="." index="7" groups=["Entrance"]]
+
+[node name="PlayerSpawn" parent="Entrance_W" index="2"]
+position = Vector2(-1.868765, -247.99297)
+
+[node name="Entrance_S" parent="." index="8" groups=["Entrance"]]
+
+[node name="PlayerSpawn" parent="Entrance_S" index="2"]
+position = Vector2(2.238023e-05, -256)
+
+[node name="Entrance_E" parent="." index="9" groups=["Entrance"]]
+
+[node name="PlayerSpawn" parent="Entrance_E" index="2"]
+position = Vector2(3.0527694e-06, -256)
+
+[node name="EnemySpawn" parent="." index="10" instance=ExtResource("2_28se7")]

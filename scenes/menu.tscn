@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c052dvxgy0knl"]
+
+[ext_resource type="Script" uid="uid://t4fag7k5ix4y" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="FontFile" uid="uid://44ssoued7fvw" path="res://font/NewRocker-Regular.ttf" id="1_yqeox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+font = ExtResource("1_yqeox")
+font_size = 100
+font_color = Color(0.6313726, 0.10588235, 0.047058813, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Menu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rows" type="VBoxContainer" parent="Margins"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margins/Rows"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "RiftCaster"
+label_settings = SubResource("LabelSettings_vjb58")
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="Margins/Rows"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_pressed_color = Color(0.7973757, 0.78372234, 1.1551381e-06, 1)
+theme_override_colors/font_hover_color = Color(0.79607844, 0.78431374, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 60
+text = "Play"
+
+[connection signal="pressed" from="Margins/Rows/Play" to="." method="_on_play_pressed"]

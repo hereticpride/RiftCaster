@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tlxg03hui4dj"]
+
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="1_ud0g2"]
+[ext_resource type="Texture2D" uid="uid://bbjk3tcmon1pn" path="res://sprites/items/pinkeye.png" id="2_oogf6"]
+
+[node name="Item" instance=ExtResource("1_ud0g2")]
+type = 4
+item_name = "Pink Eye"
+value = 0.19999999999708962
+item_description = "You are filled with the Blues. Fire Rate up!"
+is_paid_item = true
+
+[node name="ItemSprite" parent="." index="0"]
+texture = ExtResource("2_oogf6")

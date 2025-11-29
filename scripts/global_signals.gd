@@ -1,0 +1,9 @@
+extends Node
+
+signal OnPlayerEnterRoom
+signal OnEnemyDefeat
+signal OnPlayerUpdateHealth
+signal OnPlayerUpdateCoin
+signal OnWaveCleared
+signal OnUpdateText
+signal DisplayText

@@ -1,0 +1,59 @@
+[gd_scene load_steps=12 format=3 uid="uid://xws8fvte0epm"]
+
+[ext_resource type="Script" uid="uid://d1er0ujv3ikvf" path="res://scripts/enemy.gd" id="1_5icpy"]
+[ext_resource type="PackedScene" uid="uid://cim10t2viplva" path="res://scenes/items/heart.tscn" id="2_tw1qp"]
+[ext_resource type="PackedScene" uid="uid://ckfraqrf2v7jw" path="res://scenes/items/black_egg.tscn" id="3_fra1w"]
+[ext_resource type="PackedScene" uid="uid://bxbkf4nr5au7l" path="res://scenes/items/feather.tscn" id="4_n2kkp"]
+[ext_resource type="PackedScene" uid="uid://tlxg03hui4dj" path="res://scenes/items/pink_eye.tscn" id="5_l573x"]
+[ext_resource type="Texture2D" uid="uid://dk7x0jmh8q555" path="res://sprites/enemies/snakedemon.png" id="6_5ia1u"]
+[ext_resource type="AudioStream" uid="uid://cc3d5nlma84lm" path="res://audio/urgh.wav" id="7_jdhhh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7f6p"]
+atlas = ExtResource("6_5ia1u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sswtq"]
+atlas = ExtResource("6_5ia1u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31odg"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_p7f6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sswtq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4vd8"]
+radius = 22.022715
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_5icpy")
+enemy_name = "Writhing Worm"
+current_hp = 5
+max_hp = 5
+move_speed = 30.0
+damage = 2
+attack_range = 15.0
+attack_rate = 0.4000000000087311
+always_has_item = true
+items = Array[PackedScene]([ExtResource("2_tw1qp"), ExtResource("3_fra1w"), ExtResource("4_n2kkp"), ExtResource("5_l573x")])
+metadata/_custom_type_script = "uid://d1er0ujv3ikvf"
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_31odg")
+autoplay = "default"
+frame_progress = 0.2755911
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k4vd8")
+
+[node name="Urgh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_jdhhh")

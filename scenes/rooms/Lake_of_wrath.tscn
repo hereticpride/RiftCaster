@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://corc6cc80udi4"]
+
+[ext_resource type="PackedScene" uid="uid://djafctctub8eo" path="res://scenes/rooms/Abaddon.tscn" id="1_ua8hp"]
+[ext_resource type="PackedScene" uid="uid://b2rhetgpdy3fd" path="res://scenes/enemies/imp.tscn" id="2_6lvme"]
+[ext_resource type="PackedScene" uid="uid://xws8fvte0epm" path="res://scenes/enemies/snake_demon.tscn" id="3_0oqm2"]
+
+[node name="Room" instance=ExtResource("1_ua8hp")]
+
+[node name="EnemySpawn" parent="." index="10"]
+enemy_waves = 4
+enemy_scenes = Array[PackedScene]([ExtResource("2_6lvme"), ExtResource("2_6lvme"), ExtResource("2_6lvme"), ExtResource("3_0oqm2")])

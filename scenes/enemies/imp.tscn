@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2rhetgpdy3fd"]
+
+[ext_resource type="Script" uid="uid://d1er0ujv3ikvf" path="res://scripts/enemy.gd" id="1_8e3ao"]
+[ext_resource type="Texture2D" uid="uid://dapm337gioq25" path="res://sprites/enemies/imp.png" id="2_38ino"]
+[ext_resource type="PackedScene" uid="uid://cim10t2viplva" path="res://scenes/items/heart.tscn" id="2_fcftc"]
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="3_fcftc"]
+[ext_resource type="AudioStream" uid="uid://cc3d5nlma84lm" path="res://audio/urgh.wav" id="5_36ow3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
+atlas = ExtResource("2_38ino")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
+atlas = ExtResource("2_38ino")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5uy6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md0e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ra3w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4w8v"]
+radius = 16.0
+height = 32.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_8e3ao")
+enemy_name = "Imp"
+current_hp = 3
+max_hp = 3
+attack_range = 50.0
+items = Array[PackedScene]([ExtResource("2_fcftc"), ExtResource("3_fcftc")])
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_5uy6h")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_c4w8v")
+
+[node name="Urgh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_36ow3")

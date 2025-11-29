@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsjtif4kcqufp"]
+
+[ext_resource type="PackedScene" uid="uid://bohhel30d8xiw" path="res://scenes/rooms/Limbo.tscn" id="1_3tran"]
+[ext_resource type="PackedScene" uid="uid://gquuamcm67hv" path="res://scenes/items/item_spawn.tscn" id="2_xe8md"]
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="3_ij3iy"]
+[ext_resource type="PackedScene" uid="uid://ckfraqrf2v7jw" path="res://scenes/items/black_egg.tscn" id="5_hfany"]
+[ext_resource type="PackedScene" uid="uid://tlxg03hui4dj" path="res://scenes/items/pink_eye.tscn" id="5_p7gdd"]
+[ext_resource type="PackedScene" uid="uid://bxbkf4nr5au7l" path="res://scenes/items/feather.tscn" id="6_f04jm"]
+
+[node name="Room" instance=ExtResource("1_3tran")]
+
+[node name="ItemSpawn" parent="." index="10" instance=ExtResource("2_xe8md")]
+item_scenes = Array[PackedScene]([ExtResource("5_hfany"), ExtResource("3_ij3iy")])
+
+[node name="ItemSpawn2" parent="." index="11" instance=ExtResource("2_xe8md")]
+position = Vector2(60, 0)
+item_scenes = Array[PackedScene]([ExtResource("5_hfany"), ExtResource("3_ij3iy")])
+
+[node name="ItemSpawn3" parent="." index="12" instance=ExtResource("2_xe8md")]
+position = Vector2(-60, 0)
+item_scenes = Array[PackedScene]([ExtResource("5_hfany"), ExtResource("3_ij3iy"), ExtResource("5_p7gdd"), ExtResource("6_f04jm")])

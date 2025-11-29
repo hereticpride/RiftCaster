@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://n7sl5beq144h"]
+
+[ext_resource type="Script" uid="uid://c1orng4hcs8bd" path="res://scripts/item.gd" id="1_jgeia"]
+[ext_resource type="Texture2D" uid="uid://bortgqerwh0w7" path="res://sprites/items/coin.png" id="1_xhhhv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgeia"]
+radius = 11.0
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_jgeia")
+item_name = "Coin"
+value = 1.0
+item_description = "A Silver Coin"
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_xhhhv")
+region_enabled = true
+region_rect = Rect2(0, 0, 16.31564, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jgeia")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -11.0
+offset_top = 15.0
+offset_right = 11.0
+offset_bottom = 43.0
+
+[node name="ItemPrice" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 19.0
+offset_bottom = 26.0
+bbcode_enabled = true
+text = "3"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

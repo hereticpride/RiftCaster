@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://7ube0h2nji06"]
+
+[ext_resource type="Script" uid="uid://d1er0ujv3ikvf" path="res://scripts/enemy.gd" id="1_1ipnv"]
+[ext_resource type="Texture2D" uid="uid://c0kxff48p1jk7" path="res://sprites/enemies/lulu.png" id="2_hlpuo"]
+[ext_resource type="PackedScene" uid="uid://ckfraqrf2v7jw" path="res://scenes/items/black_egg.tscn" id="2_n2wyg"]
+[ext_resource type="PackedScene" uid="uid://bxbkf4nr5au7l" path="res://scenes/items/feather.tscn" id="3_o3tbl"]
+[ext_resource type="PackedScene" uid="uid://tlxg03hui4dj" path="res://scenes/items/pink_eye.tscn" id="4_0fef5"]
+[ext_resource type="AudioStream" uid="uid://cc3d5nlma84lm" path="res://audio/urgh.wav" id="6_o3tbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iey8"]
+atlas = ExtResource("2_hlpuo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2wyg"]
+atlas = ExtResource("2_hlpuo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o3tbl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iey8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2wyg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0fef5"]
+radius = 30.0
+height = 114.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_1ipnv")
+enemy_name = "Lulu"
+current_hp = 10
+max_hp = 10
+move_speed = 30.0
+damage = 3
+attack_range = 2.0
+is_boss = true
+always_has_item = true
+items = Array[PackedScene]([ExtResource("2_n2wyg"), ExtResource("3_o3tbl"), ExtResource("4_0fef5")])
+metadata/_custom_type_script = "uid://d1er0ujv3ikvf"
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_o3tbl")
+autoplay = "default"
+frame_progress = 0.21492182
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0fef5")
+
+[node name="Urgh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_o3tbl")

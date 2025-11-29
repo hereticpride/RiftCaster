@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://xe8l5n52iwma"]
+
+[ext_resource type="PackedScene" uid="uid://c052dvxgy0knl" path="res://scenes/menu.tscn" id="1_qyds8"]
+[ext_resource type="FontFile" uid="uid://44ssoued7fvw" path="res://font/NewRocker-Regular.ttf" id="2_r8dr5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rax26"]
+font = ExtResource("2_r8dr5")
+font_size = 60
+font_color = Color(0.039215688, 0.054901954, 1, 1)
+outline_size = 20
+outline_color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+
+[node name="Menu" instance=ExtResource("1_qyds8")]
+
+[node name="Title" parent="Margins/Rows" index="0"]
+text = "Not Today Satan"
+
+[node name="Label" type="Label" parent="Margins/Rows" index="1"]
+layout_mode = 2
+text = "The Blues Never Die"
+label_settings = SubResource("LabelSettings_rax26")
+horizontal_alignment = 1
+
+[node name="Play" parent="Margins/Rows" index="2"]
+text = "Play Again"

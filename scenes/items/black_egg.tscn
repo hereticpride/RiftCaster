@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckfraqrf2v7jw"]
+
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="1_4knka"]
+[ext_resource type="Texture2D" uid="uid://c4bls8sdcanoq" path="res://sprites/items/blackegg.png" id="2_v2sn2"]
+
+[node name="Item" instance=ExtResource("1_4knka")]
+type = 2
+item_name = "Black Egg"
+item_description = "Something evil stirs within. Your DAMAGE is increased"
+is_paid_item = true
+cost = 3
+
+[node name="ItemSprite" parent="." index="0"]
+texture = ExtResource("2_v2sn2")

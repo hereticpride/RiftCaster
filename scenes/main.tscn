@@ -1,0 +1,419 @@
+[gd_scene load_steps=22 format=3 uid="uid://k6odh0ou6u2u"]
+
+[ext_resource type="PackedScene" uid="uid://iqy26q61oee3" path="res://scenes/player.tscn" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://hybq537fpymq" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bohhel30d8xiw" path="res://scenes/rooms/Limbo.tscn" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://d2h7cussjdfpn" path="res://scripts/room_gen.gd" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://djafctctub8eo" path="res://scenes/rooms/Abaddon.tscn" id="4_tipki"]
+[ext_resource type="PackedScene" uid="uid://ds85jrrg3lken" path="res://scenes/rooms/Narakaloka.tscn" id="5_jkv2x"]
+[ext_resource type="Script" uid="uid://dc5c0rg22yo0" path="res://scripts/camera.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dgtm5cnelce40" path="res://scenes/rooms/Gehenna.tscn" id="6_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://corc6cc80udi4" path="res://scenes/rooms/Lake_of_wrath.tscn" id="6_muem4"]
+[ext_resource type="Script" uid="uid://bdyr2iqd84a5w" path="res://scripts/player_health.gd" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://31rhf2e2q5m4" path="res://sprites/ui/heart.png" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dsjtif4kcqufp" path="res://scenes/rooms/Crossroads.tscn" id="7_dp3eg"]
+[ext_resource type="FontFile" uid="uid://44ssoued7fvw" path="res://font/NewRocker-Regular.ttf" id="8_a8y0u"]
+[ext_resource type="Script" uid="uid://r5rfkqkvcl3i" path="res://scripts/map.gd" id="9_choun"]
+[ext_resource type="Script" uid="uid://bwm1jbeebep77" path="res://scripts/coins_value.gd" id="10_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://cy87q6i2m7ixg" path="res://sprites/ui/gridempty.png" id="10_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://di204k1doc0d7" path="res://audio/11 The Long Road Loop.mp3" id="12_eb6dy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tefeu"]
+font = ExtResource("8_a8y0u")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_choun"]
+font = ExtResource("8_a8y0u")
+font_size = 41
+
+[sub_resource type="LabelSettings" id="LabelSettings_eb6dy"]
+font = ExtResource("8_a8y0u")
+font_size = 20
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_sugp2")
+
+[node name="RoomManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_tbgi4")
+first_room_scene = ExtResource("2_jyhfs")
+room_scenes = Array[PackedScene]([ExtResource("4_tipki"), ExtResource("5_jkv2x"), ExtResource("6_muem4"), ExtResource("7_dp3eg")])
+boss_room = ExtResource("6_jbj1t")
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("1_0wfyh")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(10, -25)
+zoom = Vector2(0.8, 0.8)
+script = ExtResource("5_tbgi4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BorderLeft" type="Panel" parent="CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -1.0
+offset_right = 227.0
+offset_bottom = -1.0
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="Margins" type="MarginContainer" parent="CanvasLayer/BorderLeft"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+
+[node name="Columns" type="VBoxContainer" parent="CanvasLayer/BorderLeft/Margins"]
+layout_mode = 2
+
+[node name="Hearts" type="HBoxContainer" parent="CanvasLayer/BorderLeft/Margins/Columns"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="HealthTitle" type="Label" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "HP: "
+label_settings = SubResource("LabelSettings_tefeu")
+horizontal_alignment = 1
+
+[node name="PlayerHealth" type="GridContainer" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+columns = 5
+script = ExtResource("6_o6xl0")
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart4" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart5" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart6" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart7" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Heart8" type="TextureRect" parent="CanvasLayer/BorderLeft/Margins/Columns/Hearts/PlayerHealth"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_tefeu")
+
+[node name="Coins" type="HBoxContainer" parent="CanvasLayer/BorderLeft/Margins/Columns"]
+layout_mode = 2
+
+[node name="CoinTitle" type="Label" parent="CanvasLayer/BorderLeft/Margins/Columns/Coins"]
+layout_mode = 2
+text = "Coins:"
+label_settings = SubResource("LabelSettings_choun")
+
+[node name="CoinsValue" type="Label" parent="CanvasLayer/BorderLeft/Margins/Columns/Coins"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = SubResource("LabelSettings_choun")
+horizontal_alignment = 1
+script = ExtResource("10_eb6dy")
+
+[node name="BorderRight" type="Panel" parent="CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 930.0
+offset_top = -2.0
+offset_right = 1170.0
+offset_bottom = -2.0
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="Margins" type="MarginContainer" parent="CanvasLayer/BorderRight"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -76.0
+offset_right = 68.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_bottom = 20
+
+[node name="Map" type="GridContainer" parent="CanvasLayer/BorderRight/Margins"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 7
+script = ExtResource("9_choun")
+
+[node name="RoomRect" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect2" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect3" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect4" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect5" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect6" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect7" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect8" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect9" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect10" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect11" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect12" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect13" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect14" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect15" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect16" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect17" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect18" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect19" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect20" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect21" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect22" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect23" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect24" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect25" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect26" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect27" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect28" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect29" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect30" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect31" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect32" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect33" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect34" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect35" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect36" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect37" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect38" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect39" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect40" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect41" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect42" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect43" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect44" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect45" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect46" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect47" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect48" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="RoomRect49" type="TextureRect" parent="CanvasLayer/BorderRight/Margins/Map"]
+layout_mode = 2
+texture = ExtResource("10_ya4ey")
+
+[node name="InfoPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -346.0
+offset_top = -38.0
+offset_right = 350.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Margins" type="MarginContainer" parent="CanvasLayer/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/InfoPanel/Margins"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Info here"
+label_settings = SubResource("LabelSettings_eb6dy")
+autowrap_mode = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_eb6dy")
+volume_db = -5.0
+autoplay = true

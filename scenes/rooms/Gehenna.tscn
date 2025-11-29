@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgtm5cnelce40"]
+
+[ext_resource type="PackedScene" uid="uid://djafctctub8eo" path="res://scenes/rooms/Abaddon.tscn" id="1_rmaf1"]
+[ext_resource type="PackedScene" uid="uid://7ube0h2nji06" path="res://scenes/enemies/lulu.tscn" id="2_hkx70"]
+
+[node name="Room" instance=ExtResource("1_rmaf1")]
+is_boss_room = true
+
+[node name="EnemySpawn" parent="." index="10"]
+boss_scene = Array[PackedScene]([ExtResource("2_hkx70")])

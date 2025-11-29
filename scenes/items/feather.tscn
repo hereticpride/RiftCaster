@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxbkf4nr5au7l"]
+
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="1_0vfpe"]
+[ext_resource type="Texture2D" uid="uid://cle47mq5bgcdu" path="res://sprites/items/feather.png" id="2_scfy5"]
+[ext_resource type="FontFile" uid="uid://wo7tb5jb1vq1" path="res://font/PixelifySans-Regular.ttf" id="3_scfy5"]
+
+[node name="Item" instance=ExtResource("1_0vfpe")]
+type = 3
+item_name = "Feather"
+value = 50.0
+item_description = "A Crow feather. Increases SPEED"
+is_paid_item = true
+
+[node name="ItemSprite" parent="." index="0"]
+texture = ExtResource("2_scfy5")
+
+[node name="ItemPrice" parent="Panel" index="0"]
+theme_override_fonts/normal_font = ExtResource("3_scfy5")
+theme_override_font_sizes/normal_font_size = 18

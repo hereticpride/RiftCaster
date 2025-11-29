@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://gquuamcm67hv"]
+
+[ext_resource type="Script" uid="uid://cbuv6jkbv1tox" path="res://scripts/item_spawn.gd" id="1_0h16k"]
+[ext_resource type="PackedScene" uid="uid://n7sl5beq144h" path="res://scenes/items/item.tscn" id="2_s2015"]
+
+[node name="ItemSpawn" type="Node2D"]
+script = ExtResource("1_0h16k")
+item_scenes = Array[PackedScene]([ExtResource("2_s2015")])
+metadata/_custom_type_script = "uid://bdlpgtmba8f6e"
